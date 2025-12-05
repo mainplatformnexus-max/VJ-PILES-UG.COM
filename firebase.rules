@@ -1,0 +1,298 @@
+{
+  "rules": {
+    "admins": {
+      ".read": "auth != null",
+      ".write": "auth.token.email === 'mainplatform.nexus@gmail.com' || auth.token.email === 'okotstephen57@gmail.com'",
+      "$uid": {
+        ".validate": "newData.val() === true || newData.val() === false"
+      }
+    },
+    "movies": {
+      ".read": true,
+      ".write": "auth.token.email === 'mainplatform.nexus@gmail.com' || auth.token.email === 'okotstephen57@gmail.com'",
+      "$movieId": {
+        ".validate": "newData.hasChildren(['title', 'image', 'rating', 'year'])",
+        "title": {
+          ".validate": "newData.isString() && newData.val().length > 0"
+        },
+        "image": {
+          ".validate": "newData.isString() && newData.val().length > 0"
+        },
+        "rating": {
+          ".validate": "newData.isNumber() && newData.val() >= 0 && newData.val() <= 10"
+        },
+        "year": {
+          ".validate": "newData.isNumber() && newData.val() >= 1900 && newData.val() <= 2100"
+        },
+        "videoUrl": {
+          ".validate": "newData.isString()"
+        },
+        "category": {
+          ".validate": "newData.isString()"
+        },
+        "genre": {
+          ".validate": "newData.isString()"
+        },
+        "createdAt": {
+          ".validate": "newData.isString()"
+        }
+      }
+    },
+    "series": {
+      ".read": true,
+      ".write": "auth.token.email === 'mainplatform.nexus@gmail.com' || auth.token.email === 'okotstephen57@gmail.com'",
+      "$seriesId": {
+        ".validate": "newData.hasChildren(['title', 'image', 'rating', 'year', 'episodes'])",
+        "title": {
+          ".validate": "newData.isString() && newData.val().length > 0"
+        },
+        "image": {
+          ".validate": "newData.isString() && newData.val().length > 0"
+        },
+        "rating": {
+          ".validate": "newData.isNumber() && newData.val() >= 0 && newData.val() <= 10"
+        },
+        "year": {
+          ".validate": "newData.isNumber() && newData.val() >= 1900 && newData.val() <= 2100"
+        },
+        "episodes": {
+          ".validate": "newData.isString() || newData.hasChildren()"
+        },
+        "videoUrl": {
+          ".validate": "newData.isString()"
+        },
+        "category": {
+          ".validate": "newData.isString()"
+        },
+        "genre": {
+          ".validate": "newData.isString()"
+        },
+        "createdAt": {
+          ".validate": "newData.isString()"
+        }
+      }
+    },
+    "originals": {
+      ".read": true,
+      ".write": "auth.token.email === 'mainplatform.nexus@gmail.com' || auth.token.email === 'okotstephen57@gmail.com'"
+    },
+    "music": {
+      ".read": true,
+      ".write": "auth.token.email === 'mainplatform.nexus@gmail.com' || auth.token.email === 'okotstephen57@gmail.com'",
+      "$musicId": {
+        ".validate": "newData.hasChildren(['title', 'image', 'artist'])",
+        "title": {
+          ".validate": "newData.isString() && newData.val().length > 0"
+        },
+        "image": {
+          ".validate": "newData.isString() && newData.val().length > 0"
+        },
+        "artist": {
+          ".validate": "newData.isString() && newData.val().length > 0"
+        },
+        "videoUrl": {
+          ".validate": "newData.isString()"
+        },
+        "year": {
+          ".validate": "newData.isNumber() && newData.val() >= 1900 && newData.val() <= 2100"
+        },
+        "createdAt": {
+          ".validate": "newData.isString()"
+        }
+      }
+    },
+    "animation": {
+      ".read": true,
+      ".write": "auth.token.email === 'mainplatform.nexus@gmail.com' || auth.token.email === 'okotstephen57@gmail.com'",
+      "$animationId": {
+        ".validate": "newData.hasChildren(['title', 'image', 'rating', 'year'])",
+        "title": {
+          ".validate": "newData.isString() && newData.val().length > 0"
+        },
+        "image": {
+          ".validate": "newData.isString() && newData.val().length > 0"
+        },
+        "rating": {
+          ".validate": "newData.isNumber() && newData.val() >= 0 && newData.val() <= 10"
+        },
+        "year": {
+          ".validate": "newData.isNumber() && newData.val() >= 1900 && newData.val() <= 2100"
+        },
+        "episodes": {
+          ".validate": "newData.isString() || newData.hasChildren()"
+        },
+        "videoUrl": {
+          ".validate": "newData.isString()"
+        },
+        "genre": {
+          ".validate": "newData.isString()"
+        },
+        "createdAt": {
+          ".validate": "newData.isString()"
+        }
+      }
+    },
+    "carousel": {
+      ".read": true,
+      ".write": "auth.token.email === 'mainplatform.nexus@gmail.com' || auth.token.email === 'okotstephen57@gmail.com'",
+      "$carouselId": {
+        ".validate": "newData.hasChildren(['title', 'subtitle', 'image'])",
+        "title": {
+          ".validate": "newData.isString() && newData.val().length > 0"
+        },
+        "subtitle": {
+          ".validate": "newData.isString()"
+        },
+        "image": {
+          ".validate": "newData.isString() && newData.val().length > 0"
+        },
+        "videoUrl": {
+          ".validate": "newData.isString()"
+        },
+        "type": {
+          ".validate": "newData.isString()"
+        },
+        "createdAt": {
+          ".validate": "newData.isString()"
+        }
+      }
+    },
+    "subscriptions": {
+      ".read": "auth != null && (auth.token.email === 'mainplatform.nexus@gmail.com' || auth.token.email === 'okotstephen57@gmail.com')",
+      "$uid": {
+        ".read": "auth != null && (auth.token.email === 'mainplatform.nexus@gmail.com' || auth.token.email === 'okotstephen57@gmail.com' || auth.uid === $uid)",
+        ".write": "auth != null && (auth.token.email === 'mainplatform.nexus@gmail.com' || auth.token.email === 'okotstephen57@gmail.com' || auth.uid === $uid)",
+        ".validate": "$uid === auth.uid",
+        "planId": {
+          ".validate": "newData.isString() && newData.val().length > 0"
+        },
+        "planName": {
+          ".validate": "newData.isString() && newData.val().length > 0"
+        },
+        "amount": {
+          ".validate": "newData.isNumber() && newData.val() > 0"
+        },
+        "phoneNumber": {
+          ".validate": "newData.isString() && newData.val().length > 0"
+        },
+        "startDate": {
+          ".validate": "newData.isString()"
+        },
+        "endDate": {
+          ".validate": "newData.isString()"
+        },
+        "active": {
+          ".validate": "newData.isBoolean()"
+        },
+        "createdAt": {
+          ".validate": "newData.isString()"
+        }
+      }
+    },
+    "watchHistory": {
+      ".read": "auth != null",
+      "$uid": {
+        ".read": "auth != null && auth.uid === $uid",
+        ".write": "auth != null && auth.uid === $uid",
+        "$contentId": {
+          ".validate": "newData.hasChildren(['contentId', 'title', 'image', 'progress', 'lastWatched'])",
+          "contentId": {
+            ".validate": "newData.isString() && newData.val().length > 0"
+          },
+          "title": {
+            ".validate": "newData.isString() && newData.val().length > 0"
+          },
+          "image": {
+            ".validate": "newData.isString()"
+          },
+          "progress": {
+            ".validate": "newData.isNumber() && newData.val() >= 0 && newData.val() <= 100"
+          },
+          "videoUrl": {
+            ".validate": "newData.isString()"
+          },
+          "type": {
+            ".validate": "newData.isString()"
+          },
+          "lastWatched": {
+            ".validate": "newData.isNumber()"
+          }
+        }
+      }
+    },
+    "continueWatching": {
+      ".read": "auth != null",
+      "$uid": {
+        ".read": "auth != null && auth.uid === $uid",
+        ".write": "auth != null && auth.uid === $uid",
+        "$contentId": {
+          ".validate": "newData.hasChildren(['contentId', 'title', 'image', 'progress', 'lastWatched'])",
+          "contentId": {
+            ".validate": "newData.isString() && newData.val().length > 0"
+          },
+          "title": {
+            ".validate": "newData.isString() && newData.val().length > 0"
+          },
+          "image": {
+            ".validate": "newData.isString()"
+          },
+          "progress": {
+            ".validate": "newData.isNumber() && newData.val() >= 0 && newData.val() <= 100"
+          },
+          "contentType": {
+            ".validate": "newData.isString()"
+          },
+          "streamlink": {
+            ".validate": "newData.isString()"
+          },
+          "lastWatched": {
+            ".validate": "newData.isNumber()"
+          }
+        }
+      }
+    },
+    "wallet": {
+      ".read": "auth != null && (auth.token.email === 'mainplatform.nexus@gmail.com' || auth.token.email === 'okotstephen57@gmail.com')",
+      ".write": "auth != null && auth.token.email === 'mainplatform.nexus@gmail.com'",
+      "balance": {
+        ".read": "auth != null && (auth.token.email === 'mainplatform.nexus@gmail.com' || auth.token.email === 'okotstephen57@gmail.com')",
+        ".write": "auth != null && auth.token.email === 'mainplatform.nexus@gmail.com'",
+        ".validate": "newData.isNumber() || newData.hasChildren(['amount', 'updatedBy', 'updatedAt'])"
+      },
+      "transactions": {
+        ".read": "auth != null && (auth.token.email === 'mainplatform.nexus@gmail.com' || auth.token.email === 'okotstephen57@gmail.com')",
+        ".write": "auth != null && auth.token.email === 'mainplatform.nexus@gmail.com'",
+        "$txId": {
+          ".validate": "newData.hasChildren(['type', 'amount', 'timestamp'])"
+        }
+      }
+    },
+    "users": {
+      ".read": "auth != null && (auth.token.email === 'mainplatform.nexus@gmail.com' || auth.token.email === 'okotstephen57@gmail.com')",
+      ".write": "auth != null",
+      "$uid": {
+        ".read": "auth != null && (auth.token.email === 'mainplatform.nexus@gmail.com' || auth.token.email === 'okotstephen57@gmail.com' || auth.uid === $uid)",
+        ".write": "auth != null && (auth.token.email === 'mainplatform.nexus@gmail.com' || auth.token.email === 'okotstephen57@gmail.com' || auth.uid === $uid)",
+        ".validate": "$uid === auth.uid",
+        "email": {
+          ".validate": "newData.isString() && newData.val().length > 0"
+        },
+        "displayName": {
+          ".validate": "newData.isString()"
+        },
+        "photoURL": {
+          ".validate": "newData.isString()"
+        },
+        "role": {
+          ".validate": "newData.isString() && (newData.val() === 'admin' || newData.val() === 'user')"
+        },
+        "createdAt": {
+          ".validate": "newData.isString()"
+        },
+        "lastLogin": {
+          ".validate": "newData.isString()"
+        }
+      }
+    }
+  }
+}
